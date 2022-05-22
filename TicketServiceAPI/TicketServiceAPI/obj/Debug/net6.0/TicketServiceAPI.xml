@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TicketServiceAPI</name>
+    </assembly>
+    <members>
+        <member name="T:TicketService.Controllers.TicketController">
+            <summary>
+            Обработка билетов
+            </summary>
+        </member>
+        <member name="M:TicketService.Controllers.TicketController.#ctor(AutoMapper.IMapper,FluentValidation.IValidator{TicketService.model.Sale},FluentValidation.IValidator{TicketService.Refund})">
+            <summary>
+            Конструктор контролера Ticket
+            </summary>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:TicketService.Controllers.TicketController.Sale(Microsoft.AspNetCore.Http.IFormFile)">
+             <summary>
+             Покупка билета
+             </summary>
+             <param name="uploadedFile"> Файл с описанием билета </param>
+             <returns>Результат работы в виде http status code</returns>
+             <response code="200">Билет добавлен в базу данных</response>
+             <response code="400">Файл не прошел валидацию на соответсвие JSON schema</response> 
+             <response code="413">Размер файла больше 2 КБ</response>
+              <response code="409">Покупаемый билет уже есть в базе данных</response>
+            <response code = "500" > Ошибка в работе сервера</response>
+        </member>
+        <member name="M:TicketService.Controllers.TicketController.Refund(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Возврат билета
+            </summary>
+            <param name="uploadedFile"> Файл с информацией для возврата билета </param>
+            <returns>Результат работы в виде http status code</returns>
+            <response code="200">Совершен возврат билета (пометка в базе данных)</response>
+            <response code="400">Файл не прошел валидацию на соответсвие JSON schema</response> 
+            <response code="413">Размер файла больше 2 КБ</response>
+             <response code="409">Повторный возврат билета</response>
+             <response code="409">В передаваемом файле отсутсвует номер билета</response>
+             <response code="500">Ошибка в работе сервера</response>
+        </member>
+        <member name="T:TicketServiceAPI.BLL.ValidationModel.EnumSizeField.TicketFieldsSize">
+            <summary>
+            Размеры полей в билете
+            </summary>
+        </member>
+        <member name="F:TicketServiceAPI.BLL.ValidationModel.EnumSizeField.TicketFieldsSize.TICKETNUMBER">
+            <summary>
+            Допустимый размер номера билета
+            </summary>
+        </member>
+        <member name="F:TicketServiceAPI.BLL.ValidationModel.EnumSizeField.TicketFieldsSize.DOCTYPE">
+            <summary>
+            Допустимый размер типа документа
+            </summary>
+        </member>
+        <member name="F:TicketServiceAPI.BLL.ValidationModel.EnumSizeField.TicketFieldsSize.DOCNUMBER">
+            <summary>
+            Допустимый размер номера документа
+            </summary>
+        </member>
+        <member name="F:TicketServiceAPI.BLL.ValidationModel.EnumSizeField.TicketFieldsSize.TICKETTYPE">
+            <summary>
+            Допустимый размер типа билета
+            </summary>
+        </member>
+        <member name="F:TicketServiceAPI.BLL.ValidationModel.EnumSizeField.TicketFieldsSize.AIRLINECODE">
+            <summary>
+            Допустимый размер кода авиакомпании
+            </summary>
+        </member>
+        <member name="F:TicketServiceAPI.BLL.ValidationModel.EnumSizeField.TicketFieldsSize.FLIGHTNUM">
+            <summary>
+            Допустимый размер номера рейса 
+            </summary>
+        </member>
+        <member name="F:TicketServiceAPI.BLL.ValidationModel.EnumSizeField.TicketFieldsSize.DEPARTORARRIVEPLACE">
+            <summary>
+            Допустимый размер кода места отправления и пребытия
+            </summary>
+        </member>
+        <member name="F:TicketServiceAPI.BLL.ValidationModel.EnumSizeField.TicketFieldsSize.PNRID">
+            <summary>
+            Допустимый размер поля кода проверки подлинности билета
+            </summary>
+        </member>
+        <member name="T:TicketServiceAPI.BLL.ValidationModel.RefundValidator">
+            <summary>
+            Проверка занчений операции по возвращению билета
+            </summary>
+        </member>
+        <member name="M:TicketServiceAPI.BLL.ValidationModel.RefundValidator.#ctor">
+            <summary>
+            Проверка полей файла операции по возвращению билета на требования к валидации
+            </summary>
+        </member>
+        <member name="M:TicketServiceAPI.BLL.ValidationModel.SaleValidator.#ctor">
+            <summary>
+            Проверка билета на соответсвие требованиям валидации
+            </summary>
+        </member>
+        <member name="T:TicketServiceAPI.repo.IRepository">
+            <summary>
+            Прослойка для работы с БД
+            </summary>
+        </member>
+        <member name="M:TicketServiceAPI.repo.IRepository.UpdateAsync(TicketServiceAPI.BLL.DTO.RefundDTO)">
+            <summary>
+            Обновление записи
+            </summary>
+            <param name="refundDTO"></param>
+            <returns>HTTP status</returns>
+        </member>
+        <member name="M:TicketServiceAPI.repo.IRepository.CreateAsync(TicketServiceAPI.BLL.DTO.SaleDTO)">
+            <summary>
+            Добавление записи
+            </summary>
+            <param name="saleDTO"></param>
+            <returns>HTTP status</returns>
+        </member>
+        <member name="T:TicketServiceAPI.DB.SegmentRepository">
+            <summary>
+            Операции с БД
+            </summary>
+        </member>
+        <member name="M:TicketServiceAPI.DB.SegmentRepository.CreateAsync(TicketServiceAPI.BLL.DTO.SaleDTO)">
+            <summary>
+            Добавление билета в БД
+            </summary>
+            <param name="saleDTO"></param>
+            <returns>статус операции</returns>
+        </member>
+        <member name="M:TicketServiceAPI.DB.SegmentRepository.UpdateAsync(TicketServiceAPI.BLL.DTO.RefundDTO)">
+            <summary>
+            Обновление статуса билета
+            </summary>
+            <param name="refundDTO"></param>
+            <returns>результат операции</returns>
+        </member>
+    </members>
+</doc>
