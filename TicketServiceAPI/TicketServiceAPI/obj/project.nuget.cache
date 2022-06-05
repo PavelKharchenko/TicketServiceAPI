@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NnS3/6XqEVZAp1va9jUFoS4Gl+nGj7BA/p85I5WkOvuYTC1mj7dPPrD90vUzUC0DAfG93OXNqmOsYXo/aeKqoQ==",
+  "dgSpecHash": "koutAmQFkmPPj70gql6RYsGhTMG1eD8zN24CC/xDcXGEm1wL6N6hQwdkcXQ41O4v4V0T0e5fyGngpp0FWjeQoA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Pavel\\source\\repos\\TicketServiceAPI\\TicketServiceAPI\\TicketServiceAPI.csproj",
+  "projectFilePath": "C:\\Users\\Pavel\\Desktop\\TicketServiceAPI\\TicketServiceAPI\\TicketServiceAPI\\TicketServiceAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Pavel\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\Pavel\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
@@ -80,6 +80,7 @@
     "C:\\Users\\Pavel\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Users\\Pavel\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Pavel\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
+    "C:\\Users\\Pavel\\.nuget\\packages\\newtonsoft.json.schema\\3.0.14\\newtonsoft.json.schema.3.0.14.nupkg.sha512",
     "C:\\Users\\Pavel\\.nuget\\packages\\njsonschema\\10.6.10\\njsonschema.10.6.10.nupkg.sha512",
     "C:\\Users\\Pavel\\.nuget\\packages\\npgsql\\6.0.4\\npgsql.6.0.4.nupkg.sha512",
     "C:\\Users\\Pavel\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\6.0.4\\npgsql.entityframeworkcore.postgresql.6.0.4.nupkg.sha512",

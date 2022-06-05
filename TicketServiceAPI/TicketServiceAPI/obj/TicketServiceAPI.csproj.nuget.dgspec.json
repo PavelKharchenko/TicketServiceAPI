@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Pavel\\source\\repos\\TicketServiceAPI\\TicketServiceAPI\\TicketServiceAPI.csproj": {}
+    "C:\\Users\\Pavel\\Desktop\\TicketServiceAPI\\TicketServiceAPI\\TicketServiceAPI\\TicketServiceAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Pavel\\source\\repos\\TicketServiceAPI\\TicketServiceAPI\\TicketServiceAPI.csproj": {
+    "C:\\Users\\Pavel\\Desktop\\TicketServiceAPI\\TicketServiceAPI\\TicketServiceAPI\\TicketServiceAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pavel\\source\\repos\\TicketServiceAPI\\TicketServiceAPI\\TicketServiceAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Pavel\\Desktop\\TicketServiceAPI\\TicketServiceAPI\\TicketServiceAPI\\TicketServiceAPI.csproj",
         "projectName": "TicketServiceAPI",
-        "projectPath": "C:\\Users\\Pavel\\source\\repos\\TicketServiceAPI\\TicketServiceAPI\\TicketServiceAPI.csproj",
+        "projectPath": "C:\\Users\\Pavel\\Desktop\\TicketServiceAPI\\TicketServiceAPI\\TicketServiceAPI\\TicketServiceAPI.csproj",
         "packagesPath": "C:\\Users\\Pavel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Pavel\\source\\repos\\TicketServiceAPI\\TicketServiceAPI\\obj\\",
+        "outputPath": "C:\\Users\\Pavel\\Desktop\\TicketServiceAPI\\TicketServiceAPI\\TicketServiceAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -95,6 +95,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.1, )"
+            },
+            "Newtonsoft.Json.Schema": {
+              "target": "Package",
+              "version": "[3.0.14, )"
             },
             "Npgsql": {
               "target": "Package",

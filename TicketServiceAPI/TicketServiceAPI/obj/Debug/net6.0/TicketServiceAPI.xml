@@ -4,100 +4,25 @@
         <name>TicketServiceAPI</name>
     </assembly>
     <members>
-        <member name="T:TicketService.Controllers.TicketController">
+        <member name="T:TicketServiceAPI.BLL.Exeption.RepeatedReturnExeption">
             <summary>
-            Обработка билетов
+            Получение данной ошибки означает что произошла попытка повторно сдать билет.
             </summary>
         </member>
-        <member name="M:TicketService.Controllers.TicketController.#ctor(AutoMapper.IMapper,FluentValidation.IValidator{TicketService.model.Sale},FluentValidation.IValidator{TicketService.Refund})">
+        <member name="M:TicketServiceAPI.BLL.Exeption.RepeatedReturnExeption.#ctor(System.String)">
             <summary>
-            Конструктор контролера Ticket
+            Переопределение конструктора
             </summary>
-            <param name="mapper"></param>
+            <param name="message"></param>
         </member>
-        <member name="M:TicketService.Controllers.TicketController.Sale(Microsoft.AspNetCore.Http.IFormFile)">
-             <summary>
-             Покупка билета
-             </summary>
-             <param name="uploadedFile"> Файл с описанием билета </param>
-             <returns>Результат работы в виде http status code</returns>
-             <response code="200">Билет добавлен в базу данных</response>
-             <response code="400">Файл не прошел валидацию на соответсвие JSON schema</response> 
-             <response code="413">Размер файла больше 2 КБ</response>
-              <response code="409">Покупаемый билет уже есть в базе данных</response>
-            <response code = "500" > Ошибка в работе сервера</response>
-        </member>
-        <member name="M:TicketService.Controllers.TicketController.Refund(Microsoft.AspNetCore.Http.IFormFile)">
+        <member name="T:TicketServiceAPI.BLL.Exeption.RequestFileToLargeExeption">
             <summary>
-            Возврат билета
-            </summary>
-            <param name="uploadedFile"> Файл с информацией для возврата билета </param>
-            <returns>Результат работы в виде http status code</returns>
-            <response code="200">Совершен возврат билета (пометка в базе данных)</response>
-            <response code="400">Файл не прошел валидацию на соответсвие JSON schema</response> 
-            <response code="413">Размер файла больше 2 КБ</response>
-             <response code="409">Повторный возврат билета</response>
-             <response code="409">В передаваемом файле отсутсвует номер билета</response>
-             <response code="500">Ошибка в работе сервера</response>
-        </member>
-        <member name="T:TicketServiceAPI.BLL.ValidationModel.EnumSizeField.TicketFieldsSize">
-            <summary>
-            Размеры полей в билете
+            Ошибка обозначающаяя что полученный json file больше 2кб
             </summary>
         </member>
-        <member name="F:TicketServiceAPI.BLL.ValidationModel.EnumSizeField.TicketFieldsSize.TICKETNUMBER">
+        <member name="M:TicketServiceAPI.BLL.Exeption.RequestFileToLargeExeption.#ctor(System.String)">
             <summary>
-            Допустимый размер номера билета
-            </summary>
-        </member>
-        <member name="F:TicketServiceAPI.BLL.ValidationModel.EnumSizeField.TicketFieldsSize.DOCTYPE">
-            <summary>
-            Допустимый размер типа документа
-            </summary>
-        </member>
-        <member name="F:TicketServiceAPI.BLL.ValidationModel.EnumSizeField.TicketFieldsSize.DOCNUMBER">
-            <summary>
-            Допустимый размер номера документа
-            </summary>
-        </member>
-        <member name="F:TicketServiceAPI.BLL.ValidationModel.EnumSizeField.TicketFieldsSize.TICKETTYPE">
-            <summary>
-            Допустимый размер типа билета
-            </summary>
-        </member>
-        <member name="F:TicketServiceAPI.BLL.ValidationModel.EnumSizeField.TicketFieldsSize.AIRLINECODE">
-            <summary>
-            Допустимый размер кода авиакомпании
-            </summary>
-        </member>
-        <member name="F:TicketServiceAPI.BLL.ValidationModel.EnumSizeField.TicketFieldsSize.FLIGHTNUM">
-            <summary>
-            Допустимый размер номера рейса 
-            </summary>
-        </member>
-        <member name="F:TicketServiceAPI.BLL.ValidationModel.EnumSizeField.TicketFieldsSize.DEPARTORARRIVEPLACE">
-            <summary>
-            Допустимый размер кода места отправления и пребытия
-            </summary>
-        </member>
-        <member name="F:TicketServiceAPI.BLL.ValidationModel.EnumSizeField.TicketFieldsSize.PNRID">
-            <summary>
-            Допустимый размер поля кода проверки подлинности билета
-            </summary>
-        </member>
-        <member name="T:TicketServiceAPI.BLL.ValidationModel.RefundValidator">
-            <summary>
-            Проверка занчений операции по возвращению билета
-            </summary>
-        </member>
-        <member name="M:TicketServiceAPI.BLL.ValidationModel.RefundValidator.#ctor">
-            <summary>
-            Проверка полей файла операции по возвращению билета на требования к валидации
-            </summary>
-        </member>
-        <member name="M:TicketServiceAPI.BLL.ValidationModel.SaleValidator.#ctor">
-            <summary>
-            Проверка билета на соответсвие требованиям валидации
+            Переопределеяем конструктор
             </summary>
         </member>
         <member name="T:TicketServiceAPI.repo.IRepository">
@@ -137,6 +62,46 @@
             </summary>
             <param name="refundDTO"></param>
             <returns>результат операции</returns>
+        </member>
+        <member name="T:TicketService.Controllers.TicketController">
+            <summary>
+            Обработка билетов
+            </summary>
+        </member>
+        <member name="M:TicketService.Controllers.TicketController.#ctor(AutoMapper.IMapper,TicketServiceAPI.DB.SegmentRepository)">
+            <summary>
+            Конструктор контролера Ticket
+            </summary>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:TicketService.Controllers.TicketController.Sale(TicketService.model.Sale)">
+             <summary>
+             Покупка билета
+             </summary>
+             <param name="sale"></param>
+             <returns>Результат работы в виде http status code</returns>
+             <response code="200">Билет добавлен в базу данных</response>
+             <response code="400">Файл не прошел валидацию на соответсвие JSON schema</response> 
+             <response code="413">Размер файла больше 2 КБ</response>
+              <response code="409">Покупаемый билет уже есть в базе данных</response>
+            <response code = "500" > Ошибка в работе сервера</response>
+        </member>
+        <member name="M:TicketService.Controllers.TicketController.Refund(TicketService.Refund)">
+            <summary>
+            Возврат билета
+            </summary>
+            <returns>Результат работы в виде http status code</returns>
+            <response code="200">Совершен возврат билета (пометка в базе данных)</response>
+            <response code="400">Файл не прошел валидацию на соответсвие JSON schema</response> 
+            <response code="413">Размер файла больше 2 КБ</response>
+             <response code="409">Повторный возврат билета</response>
+             <response code="409">В передаваемом файле отсутсвует номер билета</response>
+             <response code="500">Ошибка в работе сервера</response>
+        </member>
+        <member name="T:TicketService.model.Sale">
+            <summary>
+            Объект продажи билета
+            </summary>
         </member>
     </members>
 </doc>

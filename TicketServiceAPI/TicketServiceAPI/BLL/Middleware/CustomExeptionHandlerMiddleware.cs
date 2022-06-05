@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Npgsql;
 using System.Net;
 using System.Text.Json;
 using TicketServiceAPI.BLL.Error;
+using TicketServiceAPI.BLL.Exeption;
+using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace TicketServiceAPI.BLL.Middleware
 {
@@ -16,7 +19,7 @@ namespace TicketServiceAPI.BLL.Middleware
             _next = next;
         }
 
-        public async Task Invoke(HttpContext context)
+        public async Task InvokeAsync(HttpContext context)
         {
             try
             {
@@ -52,16 +55,29 @@ namespace TicketServiceAPI.BLL.Middleware
                    
                     if (pg.SqlState == PostgresErrorCodes.QueryCanceled)
                     {
-
                         code = HttpStatusCode.RequestTimeout;
                         message = ErrorType.RequestTimeOut;
                     }
                     code= HttpStatusCode.InternalServerError;
                     message = ErrorType.ServerError;
                     break;
-
+                case RequestFileToLargeExeption:
+                    code = HttpStatusCode.RequestEntityTooLarge;
+                    message = ErrorType.RequestFileToLarge;
+                    break;
+                case ValidateJsonSchemaExeption:
+                    code = HttpStatusCode.BadRequest;
+                    message = ex.Message;
+                    break;
+                case ThisTicketDoesNotExist e:
+                    code = HttpStatusCode.BadRequest;
+                    message = e.Message;
+                    break;
+                case JsonReaderException: 
+                     code = HttpStatusCode.BadRequest;
+                    message = "Передана не верная модель";
+                    break;
                 case Exception:
-                    
                     code = HttpStatusCode.InternalServerError;
                     message = ErrorType.ServerError;
                     break;
@@ -69,7 +85,8 @@ namespace TicketServiceAPI.BLL.Middleware
 
             context.Response.StatusCode = (int)code;
             context.Response.ContentType = "application/json";
-            message = JsonSerializer.Serialize(new ErrorMessage() { Message = message });
+            message = JsonConvert.SerializeObject(new ErrorMessage() { Message = message });
+       
 
             return context.Response.WriteAsync(message);
 

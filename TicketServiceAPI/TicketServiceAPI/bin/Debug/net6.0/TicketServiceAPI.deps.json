@@ -20,6 +20,7 @@
           "Microsoft.EntityFrameworkCore.Tools": "6.0.5",
           "NJsonSchema": "10.6.10",
           "Newtonsoft.Json": "13.0.1",
+          "Newtonsoft.Json.Schema": "3.0.14",
           "Npgsql": "6.0.4",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "6.0.4",
           "Npgsql.EntityFrameworkCore.PostgreSQL.Design": "1.1.0",
@@ -676,6 +677,17 @@
           "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.2.22727"
+          }
+        }
+      },
+      "Newtonsoft.Json.Schema/3.0.14": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.Schema.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.14.25421"
           }
         }
       },
@@ -2086,6 +2098,13 @@
       "sha512": "sha512-QYFyxhaABwmq3p/21VrZNYvCg3DaEoN/wUuw5nmfAf0X3HLjgupwhkEWdgfb9nvGAUIv3osmZoD3kKl4jxEmYQ==",
       "path": "newtonsoft.json.bson/1.0.2",
       "hashPath": "newtonsoft.json.bson.1.0.2.nupkg.sha512"
+    },
+    "Newtonsoft.Json.Schema/3.0.14": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Qnu41yEFuMEJMuD1kJgslc4cF981K+hA7SmgXQ/N6pk6Zknvxt4g5Hx7KRykycP3oKyoz3aTFRV/TX+Vp6v7uQ==",
+      "path": "newtonsoft.json.schema/3.0.14",
+      "hashPath": "newtonsoft.json.schema.3.0.14.nupkg.sha512"
     },
     "NJsonSchema/10.6.10": {
       "type": "package",

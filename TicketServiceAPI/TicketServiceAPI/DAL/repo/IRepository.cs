@@ -16,13 +16,13 @@ namespace TicketServiceAPI.repo
         /// <param name="refundDTO"></param>
         /// <returns>HTTP status</returns>
 
-        public Task<HttpStatusCode> UpdateAsync(RefundDTO refundDTO);
+        public Task UpdateAsync(RefundDTO refundDTO);
         /// <summary>
         /// Добавление записи
         /// </summary>
         /// <param name="saleDTO"></param>
         /// <returns>HTTP status</returns>
-        public Task<HttpStatusCode> CreateAsync(SaleDTO saleDTO);
+        public Task CreateAsync(SaleDTO saleDTO);
     }
    
 }
